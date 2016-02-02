@@ -1,18 +1,22 @@
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 var Game = function() {
   // Game logic and initialization here
   this.board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  this.freeSpaces = ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"];
   this.spawnTile();
   this.spawnTile();
 };
 
+Game.prototype.findFreeSpace = function() {
+  return this.freeSpaces[Math.floor(Math.random() * this.freeSpaces.length)];
+};
+
 Game.prototype.spawnTile = function() {
   var val = [2, 4][Math.floor(Math.random() * 2)];
-  var row = getRandomInt(0, 3);
-  var col = getRandomInt(0, 3);
+  // var row = getRandomInt(0, 3);
+  // var col = getRandomInt(0, 3);
+  space = this.findFreeSpace();
+  row = space[0];
+  col = space[1];
 
   new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
 
