@@ -67,7 +67,7 @@ Game.prototype.movePiece = function(r, c, dir) {
 };
 
 Game.prototype.moveTile = function(tile, direction) {
-  // Game method here
+  var self = this;
   switch(direction) {
     case 38: //up
       console.log('up');
@@ -85,12 +85,14 @@ Game.prototype.moveTile = function(tile, direction) {
       tile.attr('data-col', "c" + (col - 1));
       break;
     case 39: //right
-      console.log('right');
-      row = parseInt(tile[0].getAttribute('data-row').slice(-1));
-      col = parseInt(tile[0].getAttribute('data-col').slice(-1));
+      tile.each(function(i){
+        console.log('right');
+        row = parseInt(tile[i].getAttribute('data-row').slice(-1));
+        col = parseInt(tile[i].getAttribute('data-col').slice(-1));
 
-      var newpos = this.movePiece(row, col, "right");
-      tile[0].setAttribute('data-col', "c" + newpos);
+        var newpos = self.movePiece(row, col, "right");
+        tile[i].setAttribute('data-col', "c" + newpos);
+      });
       break;
   }
 };
