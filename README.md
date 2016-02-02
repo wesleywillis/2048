@@ -15,6 +15,9 @@ Recreate as much of the original game as is reasonable in the one week we have a
 - Make things zoom around a grid with math and stuff.
 
 ### Project Baseline
+
+[Trello Link](https://trello.com/b/xAD07qrJ/2048)
+
 - Play a couple games of [2048](http://gabrielecirulli.github.io/2048/). Think about everything that's likely happening in the code to support what's happening on the screen. Once you've got a feel for the game, talk with your pair and answer the following questions:
 • How does scoring work?
 • You get a score equal to all the tiles that combine each time you shift the tiles.
