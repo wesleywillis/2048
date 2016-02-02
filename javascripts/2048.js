@@ -31,6 +31,41 @@ Game.prototype.spawnTile = function() {
   this.board[row][col] = val;
 };
 
+Game.prototype.movePiece = function(r, c, dir) {
+  switch(dir) {
+    case "right":
+      var val = this.board[r][c];
+      var newpos = c;
+      for (var i = c; i <= 3; i++) {
+        if (this.board[r][i] === 0) {
+          newpos++;
+        }
+      }
+
+      this.board[r][c] = 0;
+      this.board[r][newpos] = val;
+
+      return newpos;
+    // case "left":
+    //   while (this.board[r][c] === 0) {
+    //
+    //   }
+    //   break;
+    // case "up":
+    //   while (this.board[r][c] === 0) {
+    //
+    //   }
+    //   break;
+    // case "down":
+    //   while (this.board[r][c] === 0) {
+    //
+    //   }
+    //   break;
+  }
+
+
+};
+
 Game.prototype.moveTile = function(tile, direction) {
   // Game method here
   switch(direction) {
@@ -51,8 +86,11 @@ Game.prototype.moveTile = function(tile, direction) {
       break;
     case 39: //right
       console.log('right');
+      row = parseInt(tile[0].getAttribute('data-row').slice(-1));
       col = parseInt(tile[0].getAttribute('data-col').slice(-1));
-      tile.attr('data-col', "c" + (col + 1));
+
+      var newpos = this.movePiece(row, col, "right");
+      tile[0].setAttribute('data-col', "c" + newpos);
       break;
   }
 };
