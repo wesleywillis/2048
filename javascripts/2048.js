@@ -10,6 +10,11 @@ Game.prototype.findFreeSpace = function() {
   return this.freeSpaces[Math.floor(Math.random() * this.freeSpaces.length)];
 };
 
+Game.prototype.removeFreeSpace = function(space) {
+  spaces = this.freeSpaces;
+  spaces.splice(spaces.indexOf(space), 1);
+};
+
 Game.prototype.spawnTile = function() {
   var val = [2, 4][Math.floor(Math.random() * 2)];
   // var row = getRandomInt(0, 3);
@@ -17,6 +22,7 @@ Game.prototype.spawnTile = function() {
   space = this.findFreeSpace();
   row = space[0];
   col = space[1];
+  this.removeFreeSpace(space);
 
   new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
 
