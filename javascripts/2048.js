@@ -1,5 +1,24 @@
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 var Game = function() {
   // Game logic and initialization here
+  this.board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  this.spawnTile();
+  this.spawnTile();
+};
+
+Game.prototype.spawnTile = function() {
+  var val = [2, 4][Math.floor(Math.random() * 2)];
+  var row = getRandomInt(0, 3);
+  var col = getRandomInt(0, 3);
+
+  new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
+
+  $(".cells").after(new_tile);
+
+  this.board[row][col] = val;
 };
 
 Game.prototype.moveTile = function(tile, direction) {
