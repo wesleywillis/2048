@@ -1,26 +1,34 @@
 var Game = function() {
   // Game logic and initialization here
   this.board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-  this.freeSpaces = ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"];
+  //this.freeSpaces = ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"];
   this.spawnTile();
   this.spawnTile();
 };
 
 Game.prototype.findFreeSpace = function() {
-  return this.freeSpaces[Math.floor(Math.random() * this.freeSpaces.length)];
+  var spaceJam = [];
+  for(var r=0; r<4; r++){
+    for(var c=0; c<4; c++){
+      if (this.board[r][c] === 0) {
+        spaceJam.push(r.toString() + c.toString());
+      }
+    }
+  }
+  return spaceJam[Math.floor(Math.random() * spaceJam.length)];
 };
 
-Game.prototype.removeFreeSpace = function(space) {
-  spaces = this.freeSpaces;
-  spaces.splice(spaces.indexOf(space), 1);
-};
-
+// Game.prototype.removeFreeSpace = function(space) {
+  // spaces = this.freeSpaces;
+  // spaces.splice(spaces.indexOf(space), 1);
+// };
+//
 Game.prototype.spawnTile = function() {
   var val = [2, 4][Math.floor(Math.random() * 2)];
   space = this.findFreeSpace();
   row = space[0];
   col = space[1];
-  this.removeFreeSpace(space);
+  //this.removeFreeSpace(space);
 
   new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
 
@@ -28,15 +36,6 @@ Game.prototype.spawnTile = function() {
 
   this.board[row][col] = new_tile;
 };
-
-// Array.prototype.remove = function(value) {
-//   if (this.indexOf(value) !== -1) {
-//     this.splice(this.indexOf(value), 1);
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
 Game.prototype.moveTile = function(tile, direction) {
   var rowClone, colClone;
@@ -96,7 +95,10 @@ Game.prototype.moveTile = function(tile, direction) {
         }
         this.board[r] = rowClone;
       }
+      //this.mergeLeft();
       this.updateDisplay();
+      this.mergeLeft();
+      this.spawnTile();
       break;
 
     case 39: //right
@@ -126,6 +128,11 @@ Game.prototype.mergeLeft = function() {
         // dom.attr('data-row', "r" + r).attr("data-col", "c" + c);
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
+        if (val === nextVal){
+          dom.attr('data-val', val*2).text(val*2);
+          nextDom.remove();
+          this.board[r][c] = 0;
+        }
       }
     }
   }
