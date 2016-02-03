@@ -48,23 +48,23 @@ Game.prototype.moveTile = function(tile, direction) {
 
     case 37: //left
       this.board.forEach(function(row) {
-        for (var i = 0; i < row.length; i++) {
-          if (row[i] === 0) {
-            row.splice(i, 1);
-            row.push(0);
+        row.forEach(function(val) {
+          if (val === 0) {
+            row.splice(row.indexOf(val), 1);
+            row.unshift(0);
           }
-        }
+        });
       });
       break;
 
     case 39: //right
       this.board.forEach(function(row) {
-        for (var i in row) {
-          if (row[i] === 0) {
-            row.splice(i, 1);
-            row.unshift(0);
+        row.forEach(function(val) {
+          if (val === 0) {
+            row.splice(row.indexOf(val), 1);
+            row.push(0);
           }
-        }
+        });
       });
       break;
   }
