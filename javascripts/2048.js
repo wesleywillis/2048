@@ -49,12 +49,18 @@ Game.prototype.moveTile = function(tile, direction) {
       break;
 
     case 37: //left
-      rowClone = new Array(5).join('0').split('').map(parseFloat);
-      cloneIndex = 0;
+      //rowClone = new Array(5).join('0').split('').map(parseFloat);
+      //cloneIndex = 0;
       for(r=0; r<4; r++){
+        cloneIndex = 0;
+        rowClone = new Array(5).join('0').split('').map(parseFloat);
         for(c=0; c<4; c++){
-          
+          if (this.board[r][c] !== 0){
+            rowClone[cloneIndex] = this.board[r][c];
+            cloneIndex++;
+          }
         }
+        this.board[r] = rowClone;
       }
       // this.board.forEach(function(row) {
         // row.forEach(function(val) {
