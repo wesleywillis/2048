@@ -39,18 +39,52 @@ Game.prototype.spawnTile = function() {
 // }
 
 Game.prototype.moveTile = function(tile, direction) {
-  var rowClone;
+  var rowClone, colClone;
   var cloneIndex;
+  var r, c;
+
   switch(direction) {
     case 38: //up
+      for(c=0; c<4; c++){
+        cloneIndex = 0;
+        colClone = new Array(5).join('0').split('').map(parseFloat);
+        for(r=0; r<4; r++){
+          if (this.board[r][c] !== 0){
+            colClone[cloneIndex] = this.board[r][c];
+            cloneIndex++;
+          }
+        }
+        // this.board[r] = colClone;
+        cloneIndex = 0;
+        for(r=0; r<4; r++){
+          this.board[r][c] = colClone[cloneIndex];
+          cloneIndex++;
+        }
+      }
+      this.updateDisplay();
       break;
 
     case 40: //down
+      for(c=0; c<4; c++){
+        cloneIndex = 3;
+        colClone = new Array(5).join('0').split('').map(parseFloat);
+        for(r=3; r>=0; r--){
+          if (this.board[r][c] !== 0){
+            colClone[cloneIndex] = this.board[r][c];
+            cloneIndex--;
+          }
+        }
+        // this.board[r] = colClone;
+        cloneIndex = 3;
+        for(r=3; r>=0; r--){
+          this.board[r][c] = colClone[cloneIndex];
+          cloneIndex--;
+        }
+      }
+      this.updateDisplay();
       break;
 
     case 37: //left
-      //rowClone = new Array(5).join('0').split('').map(parseFloat);
-      //cloneIndex = 0;
       for(r=0; r<4; r++){
         cloneIndex = 0;
         rowClone = new Array(5).join('0').split('').map(parseFloat);
@@ -62,26 +96,34 @@ Game.prototype.moveTile = function(tile, direction) {
         }
         this.board[r] = rowClone;
       }
-      // this.board.forEach(function(row) {
-        // row.forEach(function(val) {
-          // if (val === 0) {
-            // row.splice(row.indexOf(val), 1);
-            // row.unshift(0);
-          // }
-        // });
-      // });
+      this.updateDisplay();
       break;
 
     case 39: //right
-      this.board.forEach(function(row) {
-        row.forEach(function(val) {
-          if (val === 0) {
-            row.splice(row.indexOf(val), 1);
-            row.push(0);
+      for(r=0; r<4; r++){
+        cloneIndex = 3;
+        rowClone = new Array(5).join('0').split('').map(parseFloat);
+        for(c=3; c>=0; c--){
+          if (this.board[r][c] !== 0){
+            rowClone[cloneIndex] = this.board[r][c];
+            cloneIndex--;
           }
-        });
-      });
+        }
+        this.board[r] = rowClone;
+      }
+      this.updateDisplay();
       break;
+  }
+};
+
+Game.prototype.updateDisplay = function() {
+  for(var r=0; r<4; r++){
+    for(var c=0; c<4; c++){
+      if (this.board[r][c] !== 0) {
+        dom = this.board[r][c];
+        dom.attr('data-row', "r" + r).attr("data-col", "c" + c);
+      }
+    }
   }
 };
 
