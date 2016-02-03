@@ -26,7 +26,7 @@ Game.prototype.spawnTile = function() {
 
   $(".cells").after(new_tile);
 
-  this.board[row][col] = val;
+  this.board[row][col] = new_tile;
 };
 
 // Array.prototype.remove = function(value) {
@@ -39,6 +39,8 @@ Game.prototype.spawnTile = function() {
 // }
 
 Game.prototype.moveTile = function(tile, direction) {
+  var rowClone;
+  var cloneIndex;
   switch(direction) {
     case 38: //up
       break;
@@ -47,14 +49,21 @@ Game.prototype.moveTile = function(tile, direction) {
       break;
 
     case 37: //left
-      this.board.forEach(function(row) {
-        row.forEach(function(val) {
-          if (val === 0) {
-            row.splice(row.indexOf(val), 1);
-            row.unshift(0);
-          }
-        });
-      });
+      rowClone = new Array(5).join('0').split('').map(parseFloat);
+      cloneIndex = 0;
+      for(r=0; r<4; r++){
+        for(c=0; c<4; c++){
+          
+        }
+      }
+      // this.board.forEach(function(row) {
+        // row.forEach(function(val) {
+          // if (val === 0) {
+            // row.splice(row.indexOf(val), 1);
+            // row.unshift(0);
+          // }
+        // });
+      // });
       break;
 
     case 39: //right
