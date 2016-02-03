@@ -116,6 +116,21 @@ Game.prototype.moveTile = function(tile, direction) {
   }
 };
 
+Game.prototype.mergeLeft = function() {
+  for(var r=0; r<4; r++){
+    for(var c=0; c<4; c++){
+      dom = this.board[r][c];
+      nextDom = this.board[r][c+1];
+
+      if (dom !== 0 && nextDom !== 0 && nextDom) {
+        // dom.attr('data-row', "r" + r).attr("data-col", "c" + c);
+        val = parseInt(dom.attr('data-val'));
+        nextVal = parseInt(nextDom.attr('data-val'));
+      }
+    }
+  }
+};
+
 Game.prototype.updateDisplay = function() {
   for(var r=0; r<4; r++){
     for(var c=0; c<4; c++){
