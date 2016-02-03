@@ -17,8 +17,6 @@ Game.prototype.removeFreeSpace = function(space) {
 
 Game.prototype.spawnTile = function() {
   var val = [2, 4][Math.floor(Math.random() * 2)];
-  // var row = getRandomInt(0, 3);
-  // var col = getRandomInt(0, 3);
   space = this.findFreeSpace();
   row = space[0];
   col = space[1];
@@ -31,82 +29,42 @@ Game.prototype.spawnTile = function() {
   this.board[row][col] = val;
 };
 
-Game.prototype.movePiece = function(r, c, dir) {
-  var val = this.board[r][c];
-  var newpos;
-  switch(dir) {
-    case "right":
-      newpos = c;
-      for (var i = c; i <= 3; i++) {
-        if (this.board[r][i] === 0) {
-          newpos++;
-        }
-      }
-
-      this.board[r][c] = 0;
-      this.board[r][newpos] = val;
-
-      return newpos;
-
-    case "left":
-      newpos = c;
-      for (var i = c; i >=0; i--) {
-        if (this.board[r][i] === 0) {
-          newpos--;
-        }
-      }
-      this.board[r][c] = 0;
-      this.board[r][newpos] = val;
-
-      return newpos;
-   case "up":
-     while (this.board[r][c] === 0) {
-
-     }
-     break;
-    // case "down":
-    //   while (this.board[r][c] === 0) {
-    //
-    //   }
-    //   break;
-  }
-
-
-};
+// Array.prototype.remove = function(value) {
+//   if (this.indexOf(value) !== -1) {
+//     this.splice(this.indexOf(value), 1);
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 Game.prototype.moveTile = function(tile, direction) {
-  var self = this;
   switch(direction) {
     case 38: //up
-      console.log('up');
-      row = parseInt(tile[0].getAttribute('data-row').slice(-1));
-      tile.attr('data-row', "r" + (row - 1));
       break;
+
     case 40: //down
-      console.log('down');
-      row = parseInt(tile[0].getAttribute('data-row').slice(-1));
-      tile.attr('data-row', "r" + (row + 1));
       break;
 
     case 37: //left
-      $(tile.get().reverse()).each(function(i){
-        console.log('left');
-        row = parseInt(tile[i].getAttribute('data-row').slice(-1));
-        col = parseInt(tile[i].getAttribute('data-col').slice(-1));
-
-        var newpos = self.movePiece(row, col, "left");
-        tile[i].setAttribute('data-col', "c" + newpos);
+      this.board.forEach(function(row) {
+        for (var i = 0; i < row.length; i++) {
+          if (row[i] === 0) {
+            row.splice(i, 1);
+            row.push(0);
+          }
+        }
       });
-    break;
+      break;
 
     case 39: //right
-      tile.each(function(i){
-        console.log('right');
-        row = parseInt(tile[i].getAttribute('data-row').slice(-1));
-        col = parseInt(tile[i].getAttribute('data-col').slice(-1));
-
-        var newpos = self.movePiece(row, col, "right");
-        tile[i].setAttribute('data-col', "c" + newpos);
+      this.board.forEach(function(row) {
+        for (var i in row) {
+          if (row[i] === 0) {
+            row.splice(i, 1);
+            row.unshift(0);
+          }
+        }
       });
       break;
   }
