@@ -37,6 +37,20 @@ Game.prototype.spawnTile = function() {
   this.board[row][col] = new_tile;
 };
 
+Game.prototype.moveLeft = function() {
+  for(r=0; r<4; r++){
+    cloneIndex = 0;
+    rowClone = new Array(5).join('0').split('').map(parseFloat);
+    for(c=0; c<4; c++){
+      if (this.board[r][c] !== 0){
+        rowClone[cloneIndex] = this.board[r][c];
+        cloneIndex++;
+      }
+    }
+    this.board[r] = rowClone;
+  }
+};
+
 Game.prototype.moveTile = function(tile, direction) {
   var rowClone, colClone;
   var cloneIndex;
@@ -84,20 +98,10 @@ Game.prototype.moveTile = function(tile, direction) {
       break;
 
     case 37: //left
-      for(r=0; r<4; r++){
-        cloneIndex = 0;
-        rowClone = new Array(5).join('0').split('').map(parseFloat);
-        for(c=0; c<4; c++){
-          if (this.board[r][c] !== 0){
-            rowClone[cloneIndex] = this.board[r][c];
-            cloneIndex++;
-          }
-        }
-        this.board[r] = rowClone;
-      }
-      //this.mergeLeft();
-      this.updateDisplay();
+      this.moveLeft();
       this.mergeLeft();
+      this.moveLeft();
+      this.updateDisplay();
       this.spawnTile();
       break;
 
@@ -130,8 +134,9 @@ Game.prototype.mergeLeft = function() {
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
           dom.attr('data-val', val*2).text(val*2);
+          this.board[r][c+1] = 0;
+          // this.updateDisplay();
           nextDom.remove();
-          this.board[r][c] = 0;
         }
       }
     }
