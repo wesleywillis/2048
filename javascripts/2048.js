@@ -4,6 +4,7 @@ var Game = function() {
   //this.freeSpaces = ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"];
   this.spawnTile();
   this.spawnTile();
+  this.score = 0;
 };
 
 Game.prototype.findFreeSpace = function() {
@@ -157,7 +158,9 @@ Game.prototype.mergeLeft = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          nextDom.attr('data-val', val*2).text(val*2);
+          score = val*2;
+          this.updateScore(score);
+          nextDom.attr('data-val', score).text(score);
           this.board[r][c] = 0;
           dom.remove();
         }
@@ -176,7 +179,9 @@ Game.prototype.mergeRight = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          nextDom.attr('data-val', val*2).text(val*2);
+          score = val*2;
+          this.updateScore(score);
+          nextDom.attr('data-val', score).text(score);
           this.board[r][c] = 0;
           dom.remove();
         }
@@ -195,7 +200,9 @@ Game.prototype.mergeUp = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          nextDom.attr('data-val', val*2).text(val*2);
+          score = val*2;
+          this.updateScore(score);
+          nextDom.attr('data-val', score).text(score);
           this.board[r][c] = 0;
           dom.remove();
         }
@@ -214,13 +221,20 @@ Game.prototype.mergeDown = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          nextDom.attr('data-val', val*2).text(val*2);
+          score = val*2;
+          this.updateScore(score);
+          nextDom.attr('data-val', score).text(score);
           this.board[r][c] = 0;
           dom.remove();
         }
       }
     }
   }
+};
+
+Game.prototype.updateScore = function(score) {
+  this.score += score;
+  $("#score").text(this.score);
 };
 
 Game.prototype.updateDisplay = function() {
