@@ -31,15 +31,20 @@ Game.prototype.findFreeSpace = function() {
 Game.prototype.spawnTile = function() {
   var val = [2, 4][Math.floor(Math.random() * 2)];
   space = this.findFreeSpace();
-  row = space[0];
-  col = space[1];
-  //this.removeFreeSpace(space);
+  if (space !== undefined) {
+    row = space[0];
+    col = space[1];
+    //this.removeFreeSpace(space);
 
-  new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
+    new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
 
-  $(".cells").after(new_tile);
+    $(".cells").after(new_tile);
 
-  this.board[row][col] = new_tile;
+    this.board[row][col] = new_tile;
+  }
+  else {
+    // TODO handle reset stuff
+  }
 };
 
 Game.prototype.moveLeft = function() {
@@ -160,12 +165,13 @@ Game.prototype.updateDisplay = function() {
 };
 
 Game.prototype.gameLost = function () {
+  console.log("Game Over");
   $('.game-message').addClass('game-over');
   $(".game-over").append("<p>Game over!</p>");
-
-//  <div class = "game-message game-over">
+  //alert("I'm an alert");
+//<div class = "game-message game-over">
 //    <p>Game over!<p>
-//  </div>  
+//  </div>
 };
 
 $(document).ready(function() {
