@@ -262,13 +262,12 @@ Game.prototype.gameLost = function () {
   console.log("Game Over");
   $('body').off("keydown");
   $('.game-message').addClass('game-over');
-  $(".game-over").append("<p>Game over!</p>");
-  //$(".gameboard").hide();
-  //alert("I'm an alert");
-//<div class = "game-message game-over">
-//    <p>Game over!<p>
-//  </div>
+  $(".game-over").prepend("<p>Game over!</p>");
+  $(".lower").append("<a class='retry-button' href='javascript:history.go(0)'>Try again</a>");
+//  $('retry-button').click(function() {
+  //  location.reload();
 };
+
 
 $(document).ready(function() {
   console.log("ready to go!");
