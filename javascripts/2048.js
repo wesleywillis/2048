@@ -249,7 +249,7 @@ Game.prototype.gameLost = function () {
   $('body').off("keydown");
   $('.game-message').addClass('game-over');
   $(".game-over").append("<p>Game over!</p>");
-  $(".gameboard").hide();
+  //$(".gameboard").hide();
   //alert("I'm an alert");
 //<div class = "game-message game-over">
 //    <p>Game over!<p>
