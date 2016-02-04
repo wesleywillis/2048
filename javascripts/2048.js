@@ -2,6 +2,7 @@ var Game = function() {
   // Game logic and initialization here
   this.board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
   //this.freeSpaces = ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"];
+  this.newTile = false;
   this.spawnTile();
   this.spawnTile();
   this.score = 0;
@@ -60,6 +61,10 @@ Game.prototype.moveLeft = function() {
         cloneIndex++;
       }
     }
+
+    for (c=0; c<4; c++){
+      this.newTile = this.newTile || (rowClone[c] !== this.board[r][c]);
+    }
     this.board[r] = rowClone;
   }
 };
@@ -75,6 +80,10 @@ Game.prototype.moveRight = function() {
         rowClone[cloneIndex] = this.board[r][c];
         cloneIndex--;
       }
+    }
+
+    for (c=0; c<4; c++){
+      this.newTile = this.newTile || (rowClone[c] !== this.board[r][c]);
     }
     this.board[r] = rowClone;
   }
@@ -93,10 +102,9 @@ Game.prototype.moveUp = function() {
       }
     }
 
-    cloneIndex = 0;
     for(r=0; r<4; r++){
-      this.board[r][c] = colClone[cloneIndex];
-      cloneIndex++;
+      this.newTile = this.newTile || (colClone[r] !== this.board[r][c]);
+      this.board[r][c] = colClone[r];
     }
   }
 };
@@ -114,10 +122,9 @@ Game.prototype.moveDown = function() {
       }
     }
     // this.board[r] = colClone;
-    cloneIndex = 3;
     for(r=3; r>=0; r--){
-      this.board[r][c] = colClone[cloneIndex];
-      cloneIndex--;
+      this.newTile = this.newTile || (colClone[r] !== this.board[r][c]);
+      this.board[r][c] = colClone[r];
     }
   }
 };
@@ -129,7 +136,10 @@ Game.prototype.moveTile = function(tile, direction) {
       this.mergeUp();
       this.moveUp();
       this.updateDisplay();
-      this.spawnTile();
+      if (this.newTile) {
+        this.spawnTile();
+      }
+      this.newTile = false;
       break;
 
     case 40: //down
@@ -137,7 +147,10 @@ Game.prototype.moveTile = function(tile, direction) {
       this.mergeDown();
       this.moveDown();
       this.updateDisplay();
-      this.spawnTile();
+      if (this.newTile) {
+        this.spawnTile();
+      }
+      this.newTile = false;
       break;
 
     case 37: //left
@@ -145,7 +158,10 @@ Game.prototype.moveTile = function(tile, direction) {
       this.mergeLeft();
       this.moveLeft();
       this.updateDisplay();
-      this.spawnTile();
+      if (this.newTile) {
+        this.spawnTile();
+      }
+      this.newTile = false;
       break;
 
     case 39: //right
@@ -153,7 +169,10 @@ Game.prototype.moveTile = function(tile, direction) {
       this.mergeRight();
       this.moveRight();
       this.updateDisplay();
-      this.spawnTile();
+      if (this.newTile) {
+        this.spawnTile();
+      }
+      this.newTile = false;
       break;
   }
 };
