@@ -166,8 +166,10 @@ Game.prototype.updateDisplay = function() {
 
 Game.prototype.gameLost = function () {
   console.log("Game Over");
+  $('body').off("keydown");
   $('.game-message').addClass('game-over');
   $(".game-over").append("<p>Game over!</p>");
+  $(".gameboard").hide();
   //alert("I'm an alert");
 //<div class = "game-message game-over">
 //    <p>Game over!<p>
