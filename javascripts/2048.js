@@ -38,6 +38,8 @@ Game.prototype.spawnTile = function() {
 };
 
 Game.prototype.moveLeft = function() {
+  var rowClone, colClone, cloneIndex, r, c;
+
   for(r=0; r<4; r++){
     cloneIndex = 0;
     rowClone = new Array(5).join('0').split('').map(parseFloat);
@@ -51,50 +53,80 @@ Game.prototype.moveLeft = function() {
   }
 };
 
-Game.prototype.moveTile = function(tile, direction) {
-  var rowClone, colClone;
-  var cloneIndex;
-  var r, c;
+Game.prototype.moveRight = function() {
+  var rowClone, colClone, cloneIndex, r, c;
 
+  for(r=0; r<4; r++){
+    cloneIndex = 3;
+    rowClone = new Array(5).join('0').split('').map(parseFloat);
+    for(c=3; c>=0; c--){
+      if (this.board[r][c] !== 0){
+        rowClone[cloneIndex] = this.board[r][c];
+        cloneIndex--;
+      }
+    }
+    this.board[r] = rowClone;
+  }
+};
+
+Game.prototype.moveUp = function() {
+  var rowClone, colClone, cloneIndex, r, c;
+
+  for(c=0; c<4; c++){
+    cloneIndex = 0;
+    colClone = new Array(5).join('0').split('').map(parseFloat);
+    for(r=0; r<4; r++){
+      if (this.board[r][c] !== 0){
+        colClone[cloneIndex] = this.board[r][c];
+        cloneIndex++;
+      }
+    }
+
+    cloneIndex = 0;
+    for(r=0; r<4; r++){
+      this.board[r][c] = colClone[cloneIndex];
+      cloneIndex++;
+    }
+  }
+};
+
+Game.prototype.moveDown = function() {
+  var rowClone, colClone, cloneIndex, r, c;
+
+  for(c=0; c<4; c++){
+    cloneIndex = 3;
+    colClone = new Array(5).join('0').split('').map(parseFloat);
+    for(r=3; r>=0; r--){
+      if (this.board[r][c] !== 0){
+        colClone[cloneIndex] = this.board[r][c];
+        cloneIndex--;
+      }
+    }
+    // this.board[r] = colClone;
+    cloneIndex = 3;
+    for(r=3; r>=0; r--){
+      this.board[r][c] = colClone[cloneIndex];
+      cloneIndex--;
+    }
+  }
+};
+
+Game.prototype.moveTile = function(tile, direction) {
   switch(direction) {
     case 38: //up
-      for(c=0; c<4; c++){
-        cloneIndex = 0;
-        colClone = new Array(5).join('0').split('').map(parseFloat);
-        for(r=0; r<4; r++){
-          if (this.board[r][c] !== 0){
-            colClone[cloneIndex] = this.board[r][c];
-            cloneIndex++;
-          }
-        }
-        // this.board[r] = colClone;
-        cloneIndex = 0;
-        for(r=0; r<4; r++){
-          this.board[r][c] = colClone[cloneIndex];
-          cloneIndex++;
-        }
-      }
+      this.moveUp();
+      this.mergeUp();
+      this.moveUp();
       this.updateDisplay();
+      this.spawnTile();
       break;
 
     case 40: //down
-      for(c=0; c<4; c++){
-        cloneIndex = 3;
-        colClone = new Array(5).join('0').split('').map(parseFloat);
-        for(r=3; r>=0; r--){
-          if (this.board[r][c] !== 0){
-            colClone[cloneIndex] = this.board[r][c];
-            cloneIndex--;
-          }
-        }
-        // this.board[r] = colClone;
-        cloneIndex = 3;
-        for(r=3; r>=0; r--){
-          this.board[r][c] = colClone[cloneIndex];
-          cloneIndex--;
-        }
-      }
+      this.moveDown();
+      this.mergeDown();
+      this.moveDown();
       this.updateDisplay();
+      this.spawnTile();
       break;
 
     case 37: //left
@@ -106,36 +138,84 @@ Game.prototype.moveTile = function(tile, direction) {
       break;
 
     case 39: //right
-      for(r=0; r<4; r++){
-        cloneIndex = 3;
-        rowClone = new Array(5).join('0').split('').map(parseFloat);
-        for(c=3; c>=0; c--){
-          if (this.board[r][c] !== 0){
-            rowClone[cloneIndex] = this.board[r][c];
-            cloneIndex--;
-          }
-        }
-        this.board[r] = rowClone;
-      }
+      this.moveRight();
+      this.mergeRight();
+      this.moveRight();
       this.updateDisplay();
+      this.spawnTile();
       break;
   }
 };
 
 Game.prototype.mergeLeft = function() {
   for(var r=0; r<4; r++){
-    for(var c=0; c<4; c++){
+    for(var c=0; c<3; c++){
       dom = this.board[r][c];
       nextDom = this.board[r][c+1];
 
-      if (dom !== 0 && nextDom !== 0 && nextDom) {
-        // dom.attr('data-row', "r" + r).attr("data-col", "c" + c);
+      if (dom !== 0 && nextDom !== 0) {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
           dom.attr('data-val', val*2).text(val*2);
           this.board[r][c+1] = 0;
-          // this.updateDisplay();
+          nextDom.remove();
+        }
+      }
+    }
+  }
+};
+
+Game.prototype.mergeRight = function() {
+  for(var r=0; r<4; r++){
+    for(var c=3; c>=1; c--){
+      dom = this.board[r][c];
+      nextDom = this.board[r][c-1];
+
+      if (dom !== 0 && nextDom !== 0) {
+        val = parseInt(dom.attr('data-val'));
+        nextVal = parseInt(nextDom.attr('data-val'));
+        if (val === nextVal){
+          dom.attr('data-val', val*2).text(val*2);
+          this.board[r][c-1] = 0;
+          nextDom.remove();
+        }
+      }
+    }
+  }
+};
+
+Game.prototype.mergeUp = function() {
+  for(var c=0; c<4; c++){
+    for(var r=0; r<3; r++){
+      dom = this.board[r][c];
+      nextDom = this.board[r+1][c];
+
+      if (dom !== 0 && nextDom !== 0) {
+        val = parseInt(dom.attr('data-val'));
+        nextVal = parseInt(nextDom.attr('data-val'));
+        if (val === nextVal){
+          dom.attr('data-val', val*2).text(val*2);
+          this.board[r+1][c] = 0;
+          nextDom.remove();
+        }
+      }
+    }
+  }
+};
+
+Game.prototype.mergeDown = function() {
+  for(var c=0; c<4; c++){
+    for(var r=3; r>=1; r--){
+      dom = this.board[r][c];
+      nextDom = this.board[r-1][c];
+
+      if (dom !== 0 && nextDom !== 0) {
+        val = parseInt(dom.attr('data-val'));
+        nextVal = parseInt(nextDom.attr('data-val'));
+        if (val === nextVal){
+          dom.attr('data-val', val*2).text(val*2);
+          this.board[r-1][c] = 0;
           nextDom.remove();
         }
       }
