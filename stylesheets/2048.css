@@ -59,3 +59,62 @@ html {
 .tile[data-val="512"]  { background: #edc850; }
 .tile[data-val="1024"] { background: #edc53f; }
 .tile[data-val="2048"] { background: #edc22e; }
+
+.game-message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(238, 228, 218, 0.73);
+  padding-top: 40px;
+  text-align: center;
+  -webkit-animation: fade-in 800ms ease 1200ms;
+  -moz-animation: fade-in 800ms ease 1200ms;
+  animation: fade-in 800ms ease 1200ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both; }
+  .game-message p {
+    font-size: 60px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    margin-top: 222px; }
+  .game-message .lower {
+    display: block;
+    margin-top: 29px; }
+  .game-message a {
+    display: inline-block;
+    background: #8f7a66;
+    border-radius: 3px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: #f9f6f2;
+    height: 40px;
+    line-height: 42px;
+    cursor: pointer;
+    margin-left: 9px; }
+  .game-message.game-won {
+    background: rgba(237, 194, 46, 0.5);
+    color: #f9f6f2; }
+  .game-over {
+    background: rgba(238, 228, 218, 0.73);
+    color: #776e65;
+    z-index: 1;
+    -webkit-animation: slide-up 1.5s ease-in-out 2500ms;
+    -moz-animation: slide-up 1.5s ease-in-out 2500ms;
+    animation: slide-up 1.5s ease-in-out 2500ms;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    animation-fill-mode: both; }
+  }
+
+    /*.game-message.game-won p, .game-message.game-over p {*/
+      /*-webkit-animation: slide-up 1.5s ease-in-out 2500ms;*/
+      /*-moz-animation: slide-up 1.5s ease-in-out 2500ms;*/
+      /*animation: slide-up 1.5s ease-in-out 2500ms;*/
+      /*-webkit-animation-fill-mode: both;*/
+      /*-moz-animation-fill-mode: both;*/
+      /*animation-fill-mode: both; }*/
+}
