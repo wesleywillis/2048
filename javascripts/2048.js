@@ -157,9 +157,9 @@ Game.prototype.mergeLeft = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          dom.attr('data-val', val*2).text(val*2);
-          this.board[r][c+1] = 0;
-          nextDom.remove();
+          nextDom.attr('data-val', val*2).text(val*2);
+          this.board[r][c] = 0;
+          dom.remove();
         }
       }
     }
@@ -176,9 +176,9 @@ Game.prototype.mergeRight = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          dom.attr('data-val', val*2).text(val*2);
-          this.board[r][c-1] = 0;
-          nextDom.remove();
+          nextDom.attr('data-val', val*2).text(val*2);
+          this.board[r][c] = 0;
+          dom.remove();
         }
       }
     }
@@ -195,9 +195,9 @@ Game.prototype.mergeUp = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          dom.attr('data-val', val*2).text(val*2);
-          this.board[r+1][c] = 0;
-          nextDom.remove();
+          nextDom.attr('data-val', val*2).text(val*2);
+          this.board[r][c] = 0;
+          dom.remove();
         }
       }
     }
@@ -214,9 +214,9 @@ Game.prototype.mergeDown = function() {
         val = parseInt(dom.attr('data-val'));
         nextVal = parseInt(nextDom.attr('data-val'));
         if (val === nextVal){
-          dom.attr('data-val', val*2).text(val*2);
-          this.board[r-1][c] = 0;
-          nextDom.remove();
+          nextDom.attr('data-val', val*2).text(val*2);
+          this.board[r][c] = 0;
+          dom.remove();
         }
       }
     }
