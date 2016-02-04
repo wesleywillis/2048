@@ -8,6 +8,7 @@ var Game = function() {
 
 Game.prototype.findFreeSpace = function() {
   var spaceJam = [];
+  var self = this;
   for(var r=0; r<4; r++){
     for(var c=0; c<4; c++){
       if (this.board[r][c] === 0) {
@@ -15,7 +16,11 @@ Game.prototype.findFreeSpace = function() {
       }
     }
   }
-  return spaceJam[Math.floor(Math.random() * spaceJam.length)];
+  if (spaceJam.length === 0){
+    self.gameLost();
+  }else{
+    return spaceJam[Math.floor(Math.random() * spaceJam.length)];
+  }
 };
 
 // Game.prototype.removeFreeSpace = function(space) {
@@ -152,6 +157,15 @@ Game.prototype.updateDisplay = function() {
       }
     }
   }
+};
+
+Game.prototype.gameLost = function () {
+  $('.game-message').addClass('game-over');
+  $(".game-over").append("<p>Game over!</p>");
+
+//  <div class = "game-message game-over">
+//    <p>Game over!<p>
+//  </div>  
 };
 
 $(document).ready(function() {
