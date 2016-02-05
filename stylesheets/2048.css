@@ -2,6 +2,21 @@ html {
   font: normal normal 30px/1 "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
+#score {
+  display: inline-block;
+  background: #e80787;
+  padding: 15px 25px;
+  font-size: 30px;
+  height: 20px;
+  line-height: 20px;
+  float: right;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  margin-top: 8px;
+  text-align: center;
+}
+
 #gameboard {
   background: #7D26CD;
   border-radius: 0.5rem;
@@ -66,7 +81,7 @@ html {
   background-size: cover;
 }
 .tile[data-val="32"]   {
-  background-image: url("https://s-media-cache-ak0.pinimg.com/236x/74/ba/d8/74bad80170df09338f7dd56ef5eef9ce.jpg");
+  background-image: url("http://36.media.tumblr.com/tumblr_lpgyjbDgTT1qj6p0jo1_500.jpg");
   background-size: cover;
 }
 .tile[data-val="64"]   {
@@ -76,11 +91,11 @@ html {
 .tile[data-val="128"]  {
   background-image: url("http://cdn.playbuzz.com/cdn/0add6cdc-adb2-48f0-8612-20e7992a6f0a/c26a5e22-f0c2-462e-8fd6-18125b81dd2f.jpg");
   background-size: cover;
-  }
+}
 .tile[data-val="256"]  {
   background-image: url("https://s-media-cache-ak0.pinimg.com/736x/b2/d2/59/b2d2590313b0570a34a510cda1c7372c.jpg");
   background-size: cover;
-  }
+}
 .tile[data-val="512"]  {
   background-image: url("http://crafturday.com/wp-content/uploads/2014/03/Frank-1.jpg");
   background-size: cover;
@@ -90,16 +105,13 @@ html {
   background-size: cover;
 }
 .tile[data-val="2048"] {
-  background-image: url("http://images.mentalfloss.com/sites/default/files/styles/article_640x430/public/11154581_10152936784158845_7259455243370641749_o_1.jpg
-");
+  background-image: url("http://images.mentalfloss.com/sites/default/files/styles/article_640x430/public/11154581_10152936784158845_7259455243370641749_o_1.jpg");
   background-size: cover;
 }
-
 .tile[data-val="4096"] {
   background-image: url("http://24.media.tumblr.com/tumblr_ln9jtlbqx41qcva5mo1_1280.jpg");
   background-size: cover;
 }
-
 .tile[data-val="8192"] {
   background-image: url("http://i.imgur.com/hPW25.png");
   background-size: cover;
@@ -132,11 +144,11 @@ html {
     margin-top: 29px; }
   .game-message a {
     display: inline-block;
-    background: #8f7a66;
+    background: #00FFCC;
     border-radius: 3px;
     padding: 0 20px;
     text-decoration: none;
-    color: #f9f6f2;
+    color: black;
     height: 40px;
     line-height: 42px;
     cursor: pointer;
@@ -145,8 +157,8 @@ html {
     /*background: rgba(237, 194, 46, 0.5);*/
     /*color: #f9f6f2; }*/
   .game-over, .game-won {
-    background: rgba(238, 228, 218, 0.73);
-    color: #776e65;
+    background: rgba(255,182,230, 0.73);
+    color: black;
     -webkit-animation: slide-up 1.5s ease-in-out 2500ms;
     -moz-animation: slide-up 1.5s ease-in-out 2500ms;
     animation: slide-up 1.5s ease-in-out 2500ms;
