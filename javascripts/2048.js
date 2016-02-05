@@ -243,8 +243,12 @@ Game.prototype.mergeDown = function() {
 };
 
 Game.prototype.updateScore = function(score) {
-  this.score += score;
-  $("#score").text(this.score);
+  if (score === 32){
+    this.gameWon();
+  }else{
+    this.score += score;
+    $("#score").text(this.score);
+  }
 };
 
 Game.prototype.updateDisplay = function() {
@@ -264,8 +268,22 @@ Game.prototype.gameLost = function () {
   $('.game-message').addClass('game-over');
   $(".game-over").prepend("<p>Game over!</p>");
   $(".lower").append("<a class='retry-button' href='javascript:history.go(0)'>Try again</a>");
-//  $('retry-button').click(function() {
-  //  location.reload();
+};
+
+Game.prototype.gameWon = function () {
+  console.log("Game Won");
+  $('body').off("keydown");
+  $('.game-message').addClass('game-over');
+  $(".game-over").prepend("<p>YOU WON! YOU ARE NUMBERWANG!!</p>");
+  $(".lower").append("<a class='retry-button' href='#'>Keep Playing?</a>");
+  $("retry-button").click(function(){
+    // $('.game-message').unbind('addClass');
+    // $('.game-message').unbind('prepend');
+    // $('.game-message').unbind('append');
+    $(".game-over").removeClass();
+    $(".retry-button").remove();
+    $(".game-message p").remove();
+  });
 };
 
 
