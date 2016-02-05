@@ -290,13 +290,29 @@ Game.prototype.gameLost = function () {
 };
 
 Game.prototype.gameWon = function () {
+  var game = this;
   console.log("Game Won");
   $('body').off("keydown");
   $('.game-message').addClass('game-won');
   $(".game-won").prepend("<p>YOU WON! YOU ARE NUMBERWANG!!</p>");
-  $(".lower").append("<a class='playing-button' href='#'>Keep Playing?</a>");
+  $(".lower").append($("<a class='playing-button' href='#'>Keep Playing?</a>").click(function(event){
+    $(".lower a").remove();
+    $(".game-won p").remove();
+    $('.game-message').removeClass('game-won');
+
+    $('body').keydown(function(event){
+      game.keyHandling(event);
+    });
+  }));
 };
 
+Game.prototype.keyHandling = function(event) {
+  var arrows = [37, 38, 39, 40];
+  if (arrows.indexOf(event.which) > -1) {
+    var tile = $('.tile');
+    this.moveTile(event.which);
+  }
+};
 
 $(document).ready(function() {
   console.log("ready to go!");
@@ -304,16 +320,10 @@ $(document).ready(function() {
   var game = new Game();
 
   $('body').keydown(function(event){
-    var arrows = [37, 38, 39, 40];
-    if (arrows.indexOf(event.which) > -1) {
-      var tile = $('.tile');
-
-      game.moveTile(event.which);
-    }
+    game.keyHandling(event);
   });
+  // $('.lower').on('click', '[playing-button] a', function(event){
+    // $('.game-message').removeClass('game-won');
 
-  $('.lower').on('click', '[playing-button] a', function(event){
-    $('.game-message').removeClass('game-won');
-
-  });
+  // });
 });
