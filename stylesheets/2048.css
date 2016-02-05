@@ -3,7 +3,7 @@ html {
 }
 
 #gameboard {
-  background: #bbada0;
+  background: #7D26CD;
   border-radius: 0.5rem;
   height: 18.5rem;
   margin: 1rem auto;
@@ -25,7 +25,8 @@ html {
   top: 0; left: 0;
   transition: all 0.2s ease-in-out;
 
-  color: #f9f6f2;
+  /*color: #f9f6f2;*/
+  color: transparent;
   background: #000;
 
   border-radius: 0.5rem;
@@ -48,19 +49,61 @@ html {
 .tile[data-col=c2] { left: 9rem; }
 .tile[data-col=c3] { left: 13.5rem; }
 
-.tile[data-val="2"]    { background-color: #A032A6 } /*purple*/
-.tile[data-val="4"]    { background-color: #2CC418 } /*bright green*/
-; }
-.tile[data-val="8"]    { background-color: #0016BD } /*royal blue*/
-; }
-.tile[data-val="16"]   { background-color: #00DED3; } /*teal*/
-.tile[data-val="32"]   { background: #F0A8C0; } /*baby pink*/
-.tile[data-val="64"]   { background: #a4f39a; } /*pastel green */
-.tile[data-val="128"]  { background: #f73141; } /*reddish*/
-.tile[data-val="256"]  { background: #b7fffb; } /*pale cyan*/
-.tile[data-val="512"]  { background: #F78431; } /*orange*/
-.tile[data-val="1024"] { background: #FFF200; } /*m&m yellow*/
-.tile[data-val="2048"] { background: #FF00C3; } /*hot pink*/
+.tile[data-val="2"]    {
+  background-image: url("http://cdn2.thegloss.com/wp-content/uploads/2012/07/kittens.gif");
+  background-size: cover;
+}
+.tile[data-val="4"]    {
+  background-image: url("http://49.media.tumblr.com/e8765b5e5c3b9498d2be8173edb588ce/tumblr_nabwiuzlfJ1tjs0two1_250.gif");
+  background-size: cover;
+}
+.tile[data-val="8"]    {
+  background-image: url("https://img0.etsystatic.com/004/0/5244368/il_570xN.360624966_4o94.jpg");
+  background-size: cover;
+}
+.tile[data-val="16"]   {
+  background-image: url("https://41.media.tumblr.com/tumblr_lrbzzzYFE91qb67vjo1_500.jpg");
+  background-size: cover;
+}
+.tile[data-val="32"]   {
+  background-image: url("https://s-media-cache-ak0.pinimg.com/236x/74/ba/d8/74bad80170df09338f7dd56ef5eef9ce.jpg");
+  background-size: cover;
+}
+.tile[data-val="64"]   {
+  background-image: url("http://retrogiftsco.com/rgc-production/static/media/site_uploads/product_images/Lisa_Frank_Stickers-full_size.jpg");
+  background-size: cover;
+}
+.tile[data-val="128"]  {
+  background-image: url("http://cdn.playbuzz.com/cdn/0add6cdc-adb2-48f0-8612-20e7992a6f0a/c26a5e22-f0c2-462e-8fd6-18125b81dd2f.jpg");
+  background-size: cover;
+  }
+.tile[data-val="256"]  {
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/b2/d2/59/b2d2590313b0570a34a510cda1c7372c.jpg");
+  background-size: cover;
+  }
+.tile[data-val="512"]  {
+  background-image: url("http://crafturday.com/wp-content/uploads/2014/03/Frank-1.jpg");
+  background-size: cover;
+}
+.tile[data-val="1024"] {
+  background-image: url("https://img1.etsystatic.com/004/0/5244368/il_570xN.386722815_bb11.jpg");
+  background-size: cover;
+}
+.tile[data-val="2048"] {
+  background-image: url("http://images.mentalfloss.com/sites/default/files/styles/article_640x430/public/11154581_10152936784158845_7259455243370641749_o_1.jpg
+");
+  background-size: cover;
+}
+
+.tile[data-val="4096"] {
+  background-image: url("http://24.media.tumblr.com/tumblr_ln9jtlbqx41qcva5mo1_1280.jpg");
+  background-size: cover;
+}
+
+.tile[data-val="8192"] {
+  background-image: url("http://i.imgur.com/hPW25.png");
+  background-size: cover;
+}
 
 .game-message {
   position: absolute;
