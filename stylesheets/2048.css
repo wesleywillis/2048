@@ -1,8 +1,10 @@
 html {
   font: normal normal 30px/1 "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  /*font: 400 3.5em/125% 'Berkshire Swash', Helvetica, Sans-serif;*/
 }
 
 #score {
+  font: 400 3.5em/125% 'Berkshire Swash', Helvetica, Sans-serif;
   display: inline-block;
   background: #e80787;
   padding: 15px 25px;
@@ -118,6 +120,7 @@ html {
 }
 
 .game-message {
+  font: 400 3.5em/125% 'Berkshire Swash', Helvetica, Sans-serif;
   position: absolute;
   top: 0;
   right: 0;
@@ -146,7 +149,7 @@ html {
     display: inline-block;
     background: #00FFCC;
     border-radius: 3px;
-    padding: 0 20px;
+    padding: 40px 20px;
     text-decoration: none;
     color: black;
     height: 40px;
