@@ -294,7 +294,7 @@ Game.prototype.gameWon = function () {
   console.log("Game Won");
   $('body').off("keydown");
   $('.game-message').addClass('game-won');
-  $(".game-won").prepend("<p>YOU WON! YOU ARE NUMBERWANG!</p>");
+  $(".game-won").prepend("<p>You Won! You are Numberwang!</p>");
   $(".lower").append($("<a class='playing-button' href='#'>Keep Playing?</a>").click(function(event){
     $(".lower a").remove();
     $(".game-won p").remove();

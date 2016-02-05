@@ -146,10 +146,11 @@ html {
     display: block;
     margin-top: 29px; }
   .game-message a {
+    font-size: 40px;
     display: inline-block;
     background: #00FFCC;
     border-radius: 3px;
-    padding: 40px 20px;
+    padding: 20px 20px;
     text-decoration: none;
     color: black;
     height: 40px;
