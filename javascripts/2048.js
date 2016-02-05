@@ -129,7 +129,7 @@ Game.prototype.moveDown = function() {
   }
 };
 
-Game.prototype.moveTile = function(tile, direction) {
+Game.prototype.moveTile = function(direction) {
   switch(direction) {
     case 38: //up
       this.moveUp();
@@ -298,7 +298,7 @@ $(document).ready(function() {
     if (arrows.indexOf(event.which) > -1) {
       var tile = $('.tile');
 
-      game.moveTile(tile, event.which);
+      game.moveTile(event.which);
     }
   });
 });
