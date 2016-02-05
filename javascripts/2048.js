@@ -292,17 +292,9 @@ Game.prototype.gameLost = function () {
 Game.prototype.gameWon = function () {
   console.log("Game Won");
   $('body').off("keydown");
-  $('.game-message').addClass('game-over');
-  $(".game-over").prepend("<p>YOU WON! YOU ARE NUMBERWANG!!</p>");
-  $(".lower").append("<a class='retry-button' href='#'>Keep Playing?</a>");
-  $("retry-button").click(function(){
-    // $('.game-message').unbind('addClass');
-    // $('.game-message').unbind('prepend');
-    // $('.game-message').unbind('append');
-    $(".game-over").removeClass();
-    $(".retry-button").remove();
-    $(".game-message p").remove();
-  });
+  $('.game-message').addClass('game-won');
+  $(".game-won").prepend("<p>YOU WON! YOU ARE NUMBERWANG!!</p>");
+  $(".lower").append("<a class='playing-button' href=''javascript:history.go(1)'>Keep Playing?</a>");
 };
 
 
