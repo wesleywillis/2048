@@ -48,17 +48,19 @@ html {
 .tile[data-col=c2] { left: 9rem; }
 .tile[data-col=c3] { left: 13.5rem; }
 
-.tile[data-val="2"]    { color: #776e65; background-color: #eee4da; }
-.tile[data-val="4"]    { color: #776e65; background-color: #ede0c8; }
-.tile[data-val="8"]    { background-color: #f2b179; }
-.tile[data-val="16"]   { background-color: #f59563; }
-.tile[data-val="32"]   { background: #f67c5f; }
-.tile[data-val="64"]   { background: #f65e3b; }
-.tile[data-val="128"]  { background: #edcf72; }
-.tile[data-val="256"]  { background: #edcc61; }
-.tile[data-val="512"]  { background: #edc850; }
-.tile[data-val="1024"] { background: #edc53f; }
-.tile[data-val="2048"] { background: #edc22e; }
+.tile[data-val="2"]    { background-color: #A032A6 } /*purple*/
+.tile[data-val="4"]    { background-color: #2CC418 } /*bright green*/
+; }
+.tile[data-val="8"]    { background-color: #0016BD } /*royal blue*/
+; }
+.tile[data-val="16"]   { background-color: #00DED3; } /*teal*/
+.tile[data-val="32"]   { background: #F0A8C0; } /*baby pink*/
+.tile[data-val="64"]   { background: #a4f39a; } /*pastel green */
+.tile[data-val="128"]  { background: #f73141; } /*reddish*/
+.tile[data-val="256"]  { background: #b7fffb; } /*pale cyan*/
+.tile[data-val="512"]  { background: #F78431; } /*orange*/
+.tile[data-val="1024"] { background: #FFF200; } /*m&m yellow*/
+.tile[data-val="2048"] { background: #FF00C3; } /*hot pink*/
 
 .game-message {
   position: absolute;

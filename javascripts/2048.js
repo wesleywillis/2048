@@ -294,7 +294,7 @@ Game.prototype.gameWon = function () {
   $('body').off("keydown");
   $('.game-message').addClass('game-won');
   $(".game-won").prepend("<p>YOU WON! YOU ARE NUMBERWANG!!</p>");
-  $(".lower").append("<a class='playing-button' href=''javascript:history.go(1)'>Keep Playing?</a>");
+  $(".lower").append("<a class='playing-button' href='#'>Keep Playing?</a>");
 };
 
 
@@ -310,5 +310,10 @@ $(document).ready(function() {
 
       game.moveTile(event.which);
     }
+  });
+
+  $('.lower').on('click', '[playing-button] a', function(event){
+    $('.game-message').removeClass('game-won');
+
   });
 });
