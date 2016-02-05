@@ -18,7 +18,7 @@ Game.prototype.findFreeSpace = function() {
       }
     }
   }
-  if (spaceJam.length === 0){
+  if (spaceJam.length === 1){
     self.gameLost();
   }else{
     return spaceJam[Math.floor(Math.random() * spaceJam.length)];
@@ -262,7 +262,7 @@ Game.prototype.mergeDown = function() {
 };
 
 Game.prototype.updateScore = function(score) {
-  if (score === 32){
+  if (score === 2048){
     this.gameWon();
   }else{
     this.score += score;
