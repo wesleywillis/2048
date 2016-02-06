@@ -114,7 +114,7 @@ html {
   background-size: cover;
 }
 .tile[data-val="8192"] {
-  background-image: url("../images.lf13.png");
+  background-image: url("../images/lf13.png");
   background-size: cover;
 }
 
