@@ -1,10 +1,9 @@
 var Game = function() {
-  // Game logic and initialization here
   this.board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-  //this.freeSpaces = ["00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33"];
+  this.newTile = true;
+  this.spawnTile();
+  this.spawnTile();
   this.newTile = false;
-  this.spawnTile();
-  this.spawnTile();
   this.score = 0;
 };
 
@@ -18,34 +17,25 @@ Game.prototype.findFreeSpace = function() {
       }
     }
   }
-  if (spaceJam.length === 1){
+  if (spaceJam.length === 0){
     self.gameLost();
-  }else{
+  }else if (this.newTile){
     return spaceJam[Math.floor(Math.random() * spaceJam.length)];
   }
 };
 
-// Game.prototype.removeFreeSpace = function(space) {
-  // spaces = this.freeSpaces;
-  // spaces.splice(spaces.indexOf(space), 1);
-// };
-//
 Game.prototype.spawnTile = function() {
   var val = [2, 4][Math.floor(Math.random() * 2)];
   space = this.findFreeSpace();
   if (space !== undefined) {
     row = space[0];
     col = space[1];
-    //this.removeFreeSpace(space);
 
     new_tile = $('<div class="tile"></div>').attr('data-row', "r" + row).attr('data-col', "c" + col).attr('data-val', val).html(val);
 
     $(".cells").after(new_tile);
 
     this.board[row][col] = new_tile;
-  }
-  else {
-    // TODO handle reset stuff
   }
 };
 
@@ -121,7 +111,6 @@ Game.prototype.moveDown = function() {
         cloneIndex--;
       }
     }
-    // this.board[r] = colClone;
     for(r=3; r>=0; r--){
       this.newTile = this.newTile || (colClone[r] !== this.board[r][c]);
       this.board[r][c] = colClone[r];
@@ -136,9 +125,7 @@ Game.prototype.moveTile = function(direction) {
       this.mergeUp();
       this.moveUp();
       this.updateDisplay();
-      if (this.newTile) {
-        this.spawnTile();
-      }
+      this.spawnTile();
       this.newTile = false;
       break;
 
@@ -147,9 +134,7 @@ Game.prototype.moveTile = function(direction) {
       this.mergeDown();
       this.moveDown();
       this.updateDisplay();
-      if (this.newTile) {
-        this.spawnTile();
-      }
+      this.spawnTile();
       this.newTile = false;
       break;
 
@@ -158,9 +143,7 @@ Game.prototype.moveTile = function(direction) {
       this.mergeLeft();
       this.moveLeft();
       this.updateDisplay();
-      if (this.newTile) {
-        this.spawnTile();
-      }
+      this.spawnTile();
       this.newTile = false;
       break;
 
@@ -169,9 +152,7 @@ Game.prototype.moveTile = function(direction) {
       this.mergeRight();
       this.moveRight();
       this.updateDisplay();
-      if (this.newTile) {
-        this.spawnTile();
-      }
+      this.spawnTile();
       this.newTile = false;
       break;
   }
@@ -294,7 +275,7 @@ Game.prototype.gameWon = function () {
   console.log("Game Won");
   $('body').off("keydown");
   $('.game-message').addClass('game-won');
-  $(".game-won").prepend("<p>You Won! You are Numberwang!</p>");
+  $(".game-won").prepend("<p>You Won!</p>");
   $(".lower").append($("<a class='playing-button' href='#'>Keep Playing?</a>").click(function(event){
     $(".lower a").remove();
     $(".game-won p").remove();
@@ -322,8 +303,4 @@ $(document).ready(function() {
   $('body').keydown(function(event){
     game.keyHandling(event);
   });
-  // $('.lower').on('click', '[playing-button] a', function(event){
-    // $('.game-message').removeClass('game-won');
-
-  // });
 });
