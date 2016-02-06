@@ -1,6 +1,5 @@
 html {
   font: normal normal 30px/1 "Clear Sans", "Helvetica Neue", Arial, sans-serif;
-  /*font: 400 3.5em/125% 'Berkshire Swash', Helvetica, Sans-serif;*/
 }
 
 #score {
@@ -67,55 +66,55 @@ html {
 .tile[data-col=c3] { left: 13.5rem; }
 
 .tile[data-val="2"]    {
-  background-image: url("http://cdn2.thegloss.com/wp-content/uploads/2012/07/kittens.gif");
+  background-image: url("../images/lf1.gif");
   background-size: cover;
 }
 .tile[data-val="4"]    {
-  background-image: url("http://49.media.tumblr.com/e8765b5e5c3b9498d2be8173edb588ce/tumblr_nabwiuzlfJ1tjs0two1_250.gif");
+  background-image: url("../images/lf2.gif");
   background-size: cover;
 }
 .tile[data-val="8"]    {
-  background-image: url("https://img0.etsystatic.com/004/0/5244368/il_570xN.360624966_4o94.jpg");
+  background-image: url("../images/lf3.jpg");
   background-size: cover;
 }
 .tile[data-val="16"]   {
-  background-image: url("https://41.media.tumblr.com/tumblr_lrbzzzYFE91qb67vjo1_500.jpg");
+  background-image: url("../images/lf4.jpg");
   background-size: cover;
 }
 .tile[data-val="32"]   {
-  background-image: url("http://36.media.tumblr.com/tumblr_lpgyjbDgTT1qj6p0jo1_500.jpg");
+  background-image: url("../images/lf5.jpg");
   background-size: cover;
 }
 .tile[data-val="64"]   {
-  background-image: url("http://retrogiftsco.com/rgc-production/static/media/site_uploads/product_images/Lisa_Frank_Stickers-full_size.jpg");
+  background-image: url("../images/lf6.jpg");
   background-size: cover;
 }
 .tile[data-val="128"]  {
-  background-image: url("http://cdn.playbuzz.com/cdn/0add6cdc-adb2-48f0-8612-20e7992a6f0a/c26a5e22-f0c2-462e-8fd6-18125b81dd2f.jpg");
+  background-image: url("../images/lf7.jpg");
   background-size: cover;
 }
 .tile[data-val="256"]  {
-  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/b2/d2/59/b2d2590313b0570a34a510cda1c7372c.jpg");
+  background-image: url("../images/lf8.jpg");
   background-size: cover;
 }
 .tile[data-val="512"]  {
-  background-image: url("http://crafturday.com/wp-content/uploads/2014/03/Frank-1.jpg");
+  background-image: url("../images/lf9.jpg");
   background-size: cover;
 }
 .tile[data-val="1024"] {
-  background-image: url("https://img1.etsystatic.com/004/0/5244368/il_570xN.386722815_bb11.jpg");
+  background-image: url("../images/lf10.jpg");
   background-size: cover;
 }
 .tile[data-val="2048"] {
-  background-image: url("http://images.mentalfloss.com/sites/default/files/styles/article_640x430/public/11154581_10152936784158845_7259455243370641749_o_1.jpg");
+  background-image: url("../images/lf11.jpg");
   background-size: cover;
 }
 .tile[data-val="4096"] {
-  background-image: url("http://24.media.tumblr.com/tumblr_ln9jtlbqx41qcva5mo1_1280.jpg");
+  background-image: url("../images/lf12.jpg");
   background-size: cover;
 }
 .tile[data-val="8192"] {
-  background-image: url("http://i.imgur.com/hPW25.png");
+  background-image: url("../images.lf13.png");
   background-size: cover;
 }
 
@@ -157,9 +156,6 @@ html {
     line-height: 42px;
     cursor: pointer;
     margin-left: 9px; }
-  /*.game-message {*/
-    /*background: rgba(237, 194, 46, 0.5);*/
-    /*color: #f9f6f2; }*/
   .game-over, .game-won {
     background: rgba(255,182,230, 0.73);
     color: black;
