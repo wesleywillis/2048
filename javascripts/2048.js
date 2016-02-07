@@ -17,11 +17,36 @@ Game.prototype.findFreeSpace = function() {
       }
     }
   }
-  if (spaceJam.length === 0){
+
+  if (spaceJam.length === 0 && !this.movesLeft()){
     self.gameLost();
-  }else if (this.newTile){
+  }else if (this.newTile) {
     return spaceJam[Math.floor(Math.random() * spaceJam.length)];
   }
+};
+
+Game.prototype.movesLeft = function() {
+  var r, c;
+
+  for (r=0; r<4; r++) {
+    for (c=0; c<3; c++) {
+      if (this.board[r][c] === 0) {
+        break;
+      } else if (this.board[r][c].attr('data-val') === this.board[r][c+1].attr('data-val')) {
+        return true;
+      }
+    }
+  }
+  for (c=0; c<4; c++) {
+    for (r=0; r<3; r++) {
+      if (this.board[r][c] === 0) {
+        break;
+      } else if (this.board[r][c].attr('data-val') === this.board[r+1][c].attr('data-val')) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 Game.prototype.spawnTile = function() {
