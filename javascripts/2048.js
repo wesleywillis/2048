@@ -50,7 +50,7 @@ Game.prototype.movesLeft = function() {
 };
 
 Game.prototype.spawnTile = function() {
-  var val = [2, 4][Math.floor(Math.random() * 2)];
+  var val = Math.random() < 0.9 ? 2 : 4;
   space = this.findFreeSpace();
   if (space !== undefined) {
     row = space[0];
